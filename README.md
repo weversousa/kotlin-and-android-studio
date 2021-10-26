@@ -12,8 +12,8 @@
 */
 ```
 
-## Função Principal
-A `fun main {}` é a porta de entrada para uma aplicação e Kotlin. É através dela que será exibido o dados.
+## Importante!
+A `fun main {}` é a porta de entrada para uma aplicação em Kotlin.
 ```kotlin
 fun main() {
   // sentença;
@@ -34,7 +34,7 @@ Depois disso **definir um nome** para a variável (qualquer um).
 Junto ao nome inserir `:`, isso significa que em seguida vamos definir o **tipo de valor** que essa variável poderá receber.   
 Então nós definimos o tipo, exemplo: `String`. Poderia ser `Int`, `Double`...  
 Depois vem o sinal de atribuição `=`.  
-Após o sinal de atribuição nós iremos passar um valor, uma `String` na linguagem **Kotlin** é definida entre **aspas duplas** `"texto"`.  
+Após o sinal de atribuição nós iremos passar um valor `String`, na linguagem **Kotlin** uma `String` é definida entre **aspas duplas** `"texto"`.  
 E por fim, inserir `;`.  
 
 Opcional:
@@ -60,26 +60,27 @@ fun main() {
 ```
 
 *Por padrão* em Kotlin uma variável não pode receber como valor **nulo**, caso isso aconteca o seu programa vai gerar um **erro**.  
-Para que isso não ocorra podemos usar o sinal de interrogação **?** na declaração da variável, esse sinal habilita a pocibilidade de uma variável receber o valor **Nulo**.  
+Para que isso não ocorra podemos usar o sinal de interrogação **?** na declaração da variável, esse sinal habilita a possibilidade de uma variável receber o valor **Nulo**.  
 ```kotlin
 fun main() {
     var nome : String? = null;
 }
 ```
 
-Caso a gente queira que uma variável possa receber qualquer tipo de dado usamos a palavra reservada `Any`, para receber qualquer **tipo** e também **Nulo** `Any?`. 
+Com a palavra reservada `Any`, declaramos uma variável que pode receber um valor de qualquer **tipo**, pois `Any` é a classe mãe de todos os tipos.  
+A palavra reservada `as`, faz um **CAST** (converte para o **tipo** desejado). Mas se o valor não for do tipo que fizermos o **CAST** vai gerar um erro no programa, para fazer um **CAST** seguro usamos a interrogação `?`.
+Já a palavra reservada `is` diferente do `as` só faz o **CAST** se for possível, dispensando assim o uso da interrogação `?`.
 ```kotlin
 fun main() {
-	var qualquerValor: Any?;
+    var valor:Any = "Weverton";    
+    if ((valor as? Int) != null) println(valor);
     
-    qualquerValor = null;
-	println(qualquerValor);
+    valor = 8;
+    if ((valor as? Int) != null) println(valor);
     
-    qualquerValor = "Weverton";
-    println(qualquerValor);
-    
-    qualquerValor = 2;
-    println(qualquerValor);   
+    valor = 25;
+    if (valor is String) println(valor);
+    else if (valor is Int) println(valor);
 }
 ```
 
@@ -215,17 +216,15 @@ fun main() {
     minhaFuncao();
 }
 ```
-### Função lambda
 
+### Função lambda
 Na linguegem Kotlin uma função Lambada é definida dentro de uma par de chaves `{}`.
 ```kotlin
 fun main() {
-    var numero: Int = 5;
+    var funcaoLambda = { n1: Int, n2: Int -> n1 + n2 };
+    println(funcaoLambda(3, 6));
     
-    val funcaoLambda = { n: Int -> n * 2 };
-    
-    var retorno = funcaoLambda(numero);
-    
-    println(retorno);    
+    var outraFuncaoLambda = { n: Int -> n * 5 };
+    println(outraFuncaoLambda(3));
 }
 ```
